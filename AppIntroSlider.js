@@ -32,6 +32,7 @@ export default class AppIntroSlider extends React.Component {
     doneLabel: 'Done',
     nextLabel: 'Next',
     prevLabel: 'Back',
+    resizeMode: 'contain',
     buttonStyle: null,
     buttonTextStyle: null,
   }
@@ -59,7 +60,8 @@ export default class AppIntroSlider extends React.Component {
     const { width, height } = this.state;
     const bottomSpacer = (this.props.bottomButton ? (this.props.showSkipButton ? 44 : 0) + 44 : 0) + (isIphoneX ? 34: 0) + 64;
     const topSpacer = (isIphoneX ? 44 : 0) + (Platform.OS === 'ios' ? 20 : StatusBar.currentHeight);
-    const props = { ...item.item, bottomSpacer, topSpacer, width, height };
+    const resizeMode = this.props.resizeMode;
+    const props = { ...item.item, bottomSpacer, topSpacer, width, height, resizeMode };
 
     return this.props.renderItem ? this.props.renderItem(props) : <DefaultSlide {...props} />;
   }
